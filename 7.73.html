@@ -1,1 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фізика: Тиск рідин і газів</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .content-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+        .video-container, .sim-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            background: #000;
+        }
+        .video-container iframe, .sim-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .drop-zone {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 2px dashed #3b82f6;
+            margin: 0 5px;
+            padding: 2px 8px;
+            color: #1e40af;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .drop-zone:hover {
+            background-color: #eff6ff;
+        }
+        .canvas-container {
+            background: #e2e8f0;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+        }
+        canvas {
+            background: #fff;
+            border: 2px solid #94a3b8;
+            border-radius: 4px;
+            max-width: 100%;
+        }
+        .law-box {
+            border-left: 4px solid #ef4444;
+            background: #fef2f2;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
 
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Тиск рідин і газів. Закон Паскаля</h1>
+            <p class="text-lg text-slate-600">Інтерактивний навчальний матеріал</p>
+        </header>
+
+        <!-- Video Section -->
+        <section class="content-card">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">1. Пояснення нового матеріалу</h2>
+            <div class="video-container mb-4">
+                <iframe src="https://drive.google.com/file/d/1sJqKjce1a5jr0lYwe-VcN_XcKjfCKyqd/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            <p class="text-sm text-slate-500 text-center">Перегляньте відео для ознайомлення з основними поняттями.</p>
+        </section>
+
+        <!-- Interactive Exercise -->
+        <section class="content-card">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">2. Конспект учня (Вправа)</h2>
+            <p class="mb-6 leading-relaxed">
+                Тиск газу на поверхню створюється численними 
+                <span class="drop-zone" onclick="checkWord(this, 'ударами')">...</span> частинок газу.
+            </p>
+            <p class="mb-4 font-semibold">Для зміни тиску газу на певну поверхню необхідно:</p>
+            <ul class="list-disc pl-6 space-y-3">
+                <li>збільшити <span class="drop-zone" onclick="checkWord(this, 'кількість')">...</span> ударів частинок;</li>
+                <li>збільшити <span class="drop-zone" onclick="checkWord(this, 'силу')">...</span> ударів частинок;</li>
+                <li>одночасно збільшити і <span class="drop-zone" onclick="checkWord(this, 'кількість')">...</span>, і <span class="drop-zone" onclick="checkWord(this, 'силу')">...</span> ударів частинок.</li>
+            </ul>
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                <p class="text-sm"><strong>Підказка:</strong> Натисніть на пропуски, щоб перевірити себе.</p>
+            </div>
+        </section>
+
+        <!-- PhET Simulation -->
+        <section class="content-card">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">3. Дослідження властивостей газу</h2>
+            <div class="sim-container">
+                <iframe src="https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html?locale=uk" allowfullscreen></iframe>
+            </div>
+            <div class="mt-4 space-y-2">
+                <p><strong>Завдання:</strong> Використовуючи симуляцію, спробуйте зменшити об'єм посудини або нагріти газ. Спостерігайте за показниками манометра.</p>
+            </div>
+        </section>
+
+        <!-- Pascal's Law -->
+        <section class="content-card">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">4. Закон Паскаля</h2>
+            <p class="mb-4">Рідина створює тиск як на дно, так і на бічні стінки посудини, в якій міститься. На будь-яке занурене в рідину тіло рідина тисне з усіх боків.</p>
+            <div class="law-box mb-4">
+                <p class="text-xl font-bold text-red-700">Закон Паскаля:</p>
+                <p class="text-lg">Тиск, створюваний на нерухому рідину або газ, передається рідиною або газом однаково в усіх напрямках.</p>
+            </div>
+        </section>
+
+        <!-- Simulation Exercise -->
+        <section class="content-card">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">5. Розв’язування вправ та симуляція</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="bg-slate-50 p-4 rounded border-l-4 border-blue-400">
+                        <p class="font-semibold">73.1 Чому балони з газом зберігають під навісом, а не на відкритій площадці, що освітлюється сонцем?</p>
+                        <p class="text-slate-700 mt-2">Відповідь: Щоб уникнути нагрівання сонцем. При підвищенні температури швидкість руху молекул зростає, що призводить до збільшення сили та кількості їх ударів об стінки — тиск зростає і балон може вибухнути.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded border-l-4 border-blue-400">
+                        <p class="font-semibold">73.2 Декілька балонів різного об’єму наповнені при однаковій температурі однаковими масами того самого газу. В якому з них тиск газу більший. Чому?</p>
+                        <p class="text-slate-700 mt-2">Відповідь: У балоні з найменшим об'ємом. Оскільки маса газу однакова, у меншому об'ємі концентрація молекул вища, тому вони частіше вдаряються об стінки.</p>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                    <p class="font-semibold mb-3 text-center">73.3 Злегка надуту зав’язану повітряну кульку помістили в посудину повітряного насоса. Чому, коли з посудини відкачують повітря, об’єм кульки збільшується?</p>
+                    <canvas id="pumpSim" width="300" height="350"></canvas>
+                    <div class="mt-4 flex flex-col items-center w-full">
+                        <label class="text-sm font-medium mb-1">Важіль насоса (відкачування):</label>
+                        <input type="range" id="vacuumRange" min="0" max="100" value="0" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer text-blue-600">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Homework -->
+        <footer class="content-card border-t-4 border-green-500">
+            <h2 class="text-2xl font-bold text-green-700 mb-2">Домашнє завдання</h2>
+            <p class="text-lg">Опрацювати § 29, Вправа № 29 (1, 3, 7)</p>
+        </footer>
+    </div>
+
+    <script>
+        // Логіка вправи
+        function checkWord(element, correct) {
+            if (element.textContent === "...") {
+                element.textContent = correct;
+                element.classList.add('text-green-600');
+                element.style.borderBottom = "none";
+            } else {
+                element.textContent = "...";
+                element.classList.remove('text-green-600');
+                element.style.borderBottom = "2px dashed #3b82f6";
+            }
+        }
+
+        // Симуляція для завдання 73.3
+        const canvas = document.getElementById('pumpSim');
+        const ctx = canvas.getContext('2d');
+        const range = document.getElementById('vacuumRange');
+
+        let pumpAnimateY = 0;
+
+        function drawSim() {
+            const vacuumLevel = range.value / 100;
+            const balloonRadius = 30 + (vacuumLevel * 65);
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Ковпак (скляна посудина)
+            ctx.beginPath();
+            ctx.strokeStyle = '#94a3b8';
+            ctx.lineWidth = 4;
+            ctx.arc(150, 150, 120, Math.PI, 0);
+            ctx.lineTo(270, 270);
+            ctx.lineTo(30, 270);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fillStyle = 'rgba(203, 213, 225, 0.15)';
+            ctx.fill();
+
+            // 2. Молекули зовні кульки (зникають при відкачуванні)
+            const particleCount = Math.max(0, 60 - (vacuumLevel * 60));
+            ctx.fillStyle = '#64748b';
+            for(let i=0; i < particleCount; i++) {
+                const x = 50 + (Math.sin(i * 123.4) * 80 + 100);
+                const y = 50 + (Math.cos(i * 56.7) * 80 + 100);
+                const dx = x - 150;
+                const dy = y - 180;
+                // Малюємо лише якщо поза межами кульки
+                if(Math.sqrt(dx*dx + dy*dy) > balloonRadius + 5 && y < 265) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // 3. Повітряна кулька
+            ctx.beginPath();
+            ctx.fillStyle = '#f43f5e';
+            ctx.arc(150, 180, balloonRadius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#9f1239';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // 4. Частинки всередині кульки (стала кількість)
+            ctx.fillStyle = '#ffffff';
+            for(let i=0; i < 12; i++) {
+                const angle = (i / 12) * Math.PI * 2 + (Date.now() / 800);
+                const dist = (Math.sin(i * 45) * 0.3 + 0.5) * balloonRadius;
+                const px = 150 + Math.cos(angle) * dist;
+                const py = 180 + Math.sin(angle) * dist;
+                ctx.beginPath();
+                ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // 5. Платформа
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(20, 270, 260, 12);
+
+            // 6. Віртуальний насос (корпус)
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(135, 282, 30, 50);
+            
+            // Рух поршня залежить від активності слайдера (імітація роботи)
+            if (range.value > 0 && range.value < 100) {
+                pumpAnimateY = Math.sin(Date.now() / 100) * 15;
+            } else {
+                pumpAnimateY = 0;
+            }
+
+            // Трубка до ковпака
+            ctx.beginPath();
+            ctx.moveTo(150, 270);
+            ctx.lineTo(150, 282);
+            ctx.stroke();
+
+            // Поршень насоса
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(137, 290 + pumpAnimateY, 26, 6); // Головка поршня
+            ctx.beginPath();
+            ctx.moveTo(150, 296 + pumpAnimateY);
+            ctx.lineTo(150, 340 + pumpAnimateY); // Шток
+            ctx.stroke();
+
+            requestAnimationFrame(drawSim);
+        }
+
+        range.addEventListener('input', drawSim);
+        window.onload = drawSim;
+    </script>
+</body>
+</html>
