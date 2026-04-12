@@ -1,0 +1,181 @@
+Атмосферний тиск
+
+Перевірка домашнього завдання (самоперевірка)
+https://l23and24.github.io/textbook-7_control_questions/paragraph30.html
+
+Пояснення нового навчального матеріалу
+вбудуй за посиланням: https://drive.google.com/file/d/1wKKAEUk69-PB-tFAOqOM-xnkEA35XBCo/view?usp=sharing
+
+Конспект уроку
+вбудуй тут цей код <!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .blank-space {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 2px dashed #3b82f6;
+            color: #2563eb;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0 4px;
+        }
+        .blank-space:hover {
+            background-color: #eff6ff;
+        }
+        .correct {
+            border-bottom: 2px solid #10b981;
+            color: #059669;
+        }
+        .wrong {
+            border-bottom: 2px solid #ef4444;
+            color: #dc2626;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 10px 14px;
+            margin: 4px 0;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+        }
+        .option-btn:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер фрагмента -->
+    <div id="physics-quiz-container" class="w-full max-w-none bg-white text-slate-800">
+        <div class="flex items-center justify-between mb-6 bg-slate-50 p-4 rounded-lg">
+            <span class="text-sm font-medium text-slate-600">Інтерактивна робота з конспектом</span>
+            <span id="score-display" class="bg-blue-600 text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">Успіх: 0/7</span>
+        </div>
+
+
+        <div class="prose prose-slate max-w-none leading-relaxed text-lg">
+            <p class="mb-4">
+                <strong>1. Природа явища:</strong> Атмосфера — це повітряна оболонка Землі. Повітря має масу, тому воно тисне на поверхню. Атмосферний тиск виникає внаслідок
+                <span class="blank-space" data-id="1" onclick="openOptions(1)">...обрати...</span>
+                повітря до Землі. Згідно із законом
+                <span class="blank-space" data-id="2" onclick="openOptions(2)">...обрати...</span>,
+                повітря тисне на нас однаково з усіх боків.
+            </p>
+
+
+            <p class="mb-4">
+                <strong>2. Вимірювання:</strong> Першим атмосферний тиск виміряв Е. Торрічеллі. Він використав трубку з
+                <span class="blank-space" data-id="3" onclick="openOptions(3)">...обрати...</span>.
+                На рівні моря нормальний тиск становить
+                <span class="blank-space" data-id="4" onclick="openOptions(4)">...обрати...</span>
+                мм рт. ст.
+            </p>
+
+
+            <p class="mb-4">
+                <strong>3. Прилади:</strong> Основним приладом для вимірювання тиску є барометр. Сучасний безпечний прилад, що не містить рідини, називається барометр-
+                <span class="blank-space" data-id="5" onclick="openOptions(5)">...обрати...</span>.
+            </p>
+
+
+            <p class="mb-4">
+                <strong>4. Зміна тиску:</strong> З підняттям угору атмосферний тиск
+                <span class="blank-space" data-id="6" onclick="openOptions(6)">...обрати...</span>.
+                Біля поверхні Землі при підйомі на кожні
+                <span class="blank-space" data-id="7" onclick="openOptions(7)">...обрати...</span>
+                метрів тиск зменшується приблизно на 1 мм рт. ст.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Модальне вікно вибору -->
+    <div id="options-modal" class="modal-overlay" onclick="closeOptions()">
+        <div class="bg-white p-5 rounded-lg shadow-xl w-72" onclick="event.stopPropagation()">
+            <div id="options-container"></div>
+        </div>
+    </div>
+
+
+    <script>
+        const quizData = {
+            1: { correct: "притягання (гравітації)", options: ["нагрівання", "притягання (гравітації)", "охолодження", "руху молекул"] },
+            2: { correct: "Паскаля", options: ["Архімеда", "Ньютона", "Паскаля", "Гука"] },
+            3: { correct: "ртуттю", options: ["водою", "олією", "ртуттю", "спиртом"] },
+            4: { correct: "760", options: ["100", "760", "450", "1000"] },
+            5: { correct: "анероїд", options: ["манометр", "термометр", "гігрометр", "анероїд"] },
+            6: { correct: "зменшується", options: ["збільшується", "не змінюється", "спочатку зростає", "зменшується"] },
+            7: { correct: "11", options: ["11", "100", "5", "1000"] }
+        };
+
+
+        let currentId = null;
+        let answered = {};
+
+
+        function openOptions(id) {
+            currentId = id;
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+           
+            quizData[id].options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => selectOption(opt);
+                container.appendChild(btn);
+            });
+
+
+            document.getElementById('options-modal').style.display = 'flex';
+        }
+
+
+        function closeOptions() {
+            document.getElementById('options-modal').style.display = 'none';
+        }
+
+
+        function selectOption(value) {
+            const isCorrect = value === quizData[currentId].correct;
+            const element = document.querySelector(`.blank-space[data-id="${currentId}"]`);
+           
+            element.textContent = value;
+            element.classList.remove('correct', 'wrong');
+            element.classList.add(isCorrect ? 'correct' : 'wrong');
+           
+            answered[currentId] = isCorrect;
+            updateScore();
+            closeOptions();
+        }
+
+
+        function updateScore() {
+            const count = Object.values(answered).filter(v => v === true).length;
+            const display = document.getElementById('score-display');
+            display.textContent = `Успіх: ${count}/7`;
+            if (count === 7) display.style.backgroundColor = '#10b981';
+        }
+    </script>
+</body>
+</html>
+
+
+Домашнє завдання: Опрацювати матеріал § 31. Дати відповіді на контрольні запитання (с. 220)
