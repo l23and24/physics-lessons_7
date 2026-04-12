@@ -1,22 +1,14 @@
-Атмосферний тиск
-
-Перевірка домашнього завдання (самоперевірка)
-https://l23and24.github.io/textbook-7_control_questions/paragraph30.html
-
-Пояснення нового навчального матеріалу
-вбудуй за посиланням: https://drive.google.com/file/d/1wKKAEUk69-PB-tFAOqOM-xnkEA35XBCo/view?usp=sharing
-
-Конспект уроку
-вбудуй тут цей код <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конспект уроку: Атмосферний тиск</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .blank-space {
             display: inline-block;
-            min-width: 120px;
+            min-width: 110px;
             border-bottom: 2px dashed #3b82f6;
             color: #2563eb;
             font-weight: bold;
@@ -24,97 +16,211 @@ https://l23and24.github.io/textbook-7_control_questions/paragraph30.html
             cursor: pointer;
             transition: all 0.2s;
             padding: 0 4px;
+            line-height: 1.5;
         }
-        .blank-space:hover {
-            background-color: #eff6ff;
+        .blank-space:hover { background-color: #eff6ff; }
+        .correct { border-bottom: 2px solid #10b981; color: #059669; }
+        .wrong { border-bottom: 2px solid #ef4444; color: #dc2626; }
+        
+        /* Стилі для пасхальної анімації */
+        .easter-decoration {
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            z-index: -1;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
         }
-        .correct {
-            border-bottom: 2px solid #10b981;
-            color: #059669;
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
         }
-        .wrong {
-            border-bottom: 2px solid #ef4444;
-            color: #dc2626;
-        }
+
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            padding: 20px;
         }
         .option-btn {
             width: 100%;
             text-align: left;
-            padding: 10px 14px;
-            margin: 4px 0;
+            padding: 14px 16px;
+            margin: 6px 0;
             border: 1px solid #e2e8f0;
-            border-radius: 6px;
+            border-radius: 10px;
             background: white;
             cursor: pointer;
+            font-size: 1rem;
         }
-        .option-btn:hover {
-            background-color: #f8fafc;
-            border-color: #cbd5e1;
+        .option-btn:active { background-color: #f1f5f9; transform: scale(0.98); }
+        
+        .responsive-iframe-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            background: #000;
+            border-radius: 0.75rem;
+        }
+        .video-aspect { padding-top: 56.25%; }
+        .quiz-aspect { padding-top: 75%; }
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            width: 100%; height: 100%; border: none;
         }
     </style>
 </head>
-<body>
-    <!-- Контейнер фрагмента -->
-    <div id="physics-quiz-container" class="w-full max-w-none bg-white text-slate-800">
-        <div class="flex items-center justify-between mb-6 bg-slate-50 p-4 rounded-lg">
-            <span class="text-sm font-medium text-slate-600">Інтерактивна робота з конспектом</span>
-            <span id="score-display" class="bg-blue-600 text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">Успіх: 0/7</span>
+<body class="bg-emerald-50 antialiased overflow-x-hidden">
+    <!-- Контейнер для анімації створюється скриптом -->
+    <div id="easter-bg"></div>
+
+    <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm shadow-2xl md:my-10 min-h-screen md:min-h-0 md:rounded-2xl overflow-hidden border border-emerald-100">
+        
+        <!-- Заголовок з пасхальним привітанням -->
+        <header class="bg-gradient-to-r from-blue-600 to-emerald-500 p-6 md:p-10 text-white shadow-md relative overflow-hidden">
+            <div class="relative z-10 text-center">
+                <p class="text-yellow-300 font-bold mb-2 animate-bounce">🐣 Світлого Великодня! 🌿</p>
+                <h1 class="text-2xl md:text-4xl font-bold">Атмосферний тиск</h1>
+            </div>
+            <!-- Декоративне яйце у фоні шапки -->
+            <div class="absolute -right-10 -bottom-10 opacity-20 transform rotate-12 text-9xl">🥚</div>
+        </header>
+
+        <div class="p-5 md:p-10 space-y-10 md:space-y-16">
+            
+            <!-- 1. Перевірка домашнього завдання -->
+            <section>
+                <div class="flex items-center mb-4">
+                    <span class="bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 font-bold shadow-sm">1</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Перевірка ДЗ (самоперевірка)</h2>
+                </div>
+                <div class="responsive-iframe-container quiz-aspect shadow-inner border border-slate-200">
+                    <iframe src="https://l23and24.github.io/textbook-7_control_questions/paragraph30.html"></iframe>
+                </div>
+            </section>
+
+            <!-- 2. Пояснення нового матеріалу -->
+            <section>
+                <div class="flex items-center mb-4">
+                    <span class="bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 font-bold shadow-sm">2</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800 text-center">
+                        Пояснення нового матеріалу 🐰
+                    </h2>
+                </div>
+                <div class="responsive-iframe-container video-aspect shadow-lg">
+                    <iframe src="https://drive.google.com/file/d/1wKKAEUk69-PB-tFAOqOM-xnkEA35XBCo/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- 3. Інтерактивний конспект -->
+            <section>
+                <div class="flex items-center mb-4">
+                    <span class="bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 font-bold shadow-sm">3</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Конспект (робота з пропусками)</h2>
+                </div>
+                
+                <div class="bg-emerald-50 rounded-2xl p-4 md:p-8 border border-emerald-100 shadow-sm relative overflow-hidden">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 border-b border-emerald-200 pb-4">
+                        <span class="text-sm font-semibold text-emerald-800 italic">Складіть святковий конспект:</span>
+                        <div id="score-display" class="bg-emerald-600 text-white px-4 py-1.5 rounded-full text-sm font-black text-center shadow-md">Успіх: 0/7</div>
+                    </div>
+
+                    <div class="text-slate-700 leading-relaxed text-base md:text-lg relative z-10">
+                        <div class="mb-8 p-4 bg-white/80 rounded-xl border border-emerald-50">
+                            <h4 class="font-bold text-emerald-600 mb-2">1. Природа явища</h4>
+                            Атмосфера — це повітряна оболонка Землі. Повітря має масу, тому воно тисне на поверхню. Атмосферний тиск виникає внаслідок 
+                            <span class="blank-space" data-id="1" onclick="openOptions(1)">...обрати...</span> 
+                            повітря до Землі. Згідно із законом 
+                            <span class="blank-space" data-id="2" onclick="openOptions(2)">...обрати...</span>, 
+                            повітря тисне на нас однаково з усіх боків.
+                        </div>
+
+                        <div class="mb-8 p-4 bg-white/80 rounded-xl border border-emerald-50">
+                            <h4 class="font-bold text-emerald-600 mb-2">2. Вимірювання</h4>
+                            Першим атмосферний тиск виміряв Е. Торрічеллі. Він використав трубку з 
+                            <span class="blank-space" data-id="3" onclick="openOptions(3)">...обрати...</span>. 
+                            На рівні моря нормальний тиск становить 
+                            <span class="blank-space" data-id="4" onclick="openOptions(4)">...обрати...</span> 
+                            мм рт. ст.
+                        </div>
+
+                        <div class="mb-8 p-4 bg-white/80 rounded-xl border border-emerald-50">
+                            <h4 class="font-bold text-emerald-600 mb-2">3. Прилади</h4>
+                            Основним приладом для вимірювання тиску є барометр. Сучасний безпечний прилад, що не містить рідини, називається барометр-
+                            <span class="blank-space" data-id="5" onclick="openOptions(5)">...обрати...</span>.
+                        </div>
+
+                        <div class="p-4 bg-white/80 rounded-xl border border-emerald-50">
+                            <h4 class="font-bold text-emerald-600 mb-2">4. Зміна тиску</h4>
+                            З підняттям угору атмосферний тиск 
+                            <span class="blank-space" data-id="6" onclick="openOptions(6)">...обрати...</span>. 
+                            Біля поверхні Землі при підйомі на кожні 
+                            <span class="blank-space" data-id="7" onclick="openOptions(7)">...обрати...</span> 
+                            метрів тиск зменшується приблизно на 1 мм рт. ст.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Домашнє завдання -->
+            <section class="bg-blue-50 p-6 md:p-8 rounded-2xl border-2 border-dashed border-blue-200">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-600 p-2 rounded-lg mr-4 text-white shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-blue-900">Домашнє завдання</h2>
+                </div>
+                <ul class="space-y-3 text-slate-700 text-lg">
+                    <li class="flex items-start">
+                        <span class="mr-2 text-blue-500 font-bold">•</span>
+                        <span>Опрацювати матеріал <strong>§ 31</strong> у підручнику.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 text-blue-500 font-bold">•</span>
+                        <span>Дати усні відповіді на контрольні запитання (с. 220).</span>
+                    </li>
+                </ul>
+            </section>
         </div>
 
-
-        <div class="prose prose-slate max-w-none leading-relaxed text-lg">
-            <p class="mb-4">
-                <strong>1. Природа явища:</strong> Атмосфера — це повітряна оболонка Землі. Повітря має масу, тому воно тисне на поверхню. Атмосферний тиск виникає внаслідок
-                <span class="blank-space" data-id="1" onclick="openOptions(1)">...обрати...</span>
-                повітря до Землі. Згідно із законом
-                <span class="blank-space" data-id="2" onclick="openOptions(2)">...обрати...</span>,
-                повітря тисне на нас однаково з усіх боків.
-            </p>
-
-
-            <p class="mb-4">
-                <strong>2. Вимірювання:</strong> Першим атмосферний тиск виміряв Е. Торрічеллі. Він використав трубку з
-                <span class="blank-space" data-id="3" onclick="openOptions(3)">...обрати...</span>.
-                На рівні моря нормальний тиск становить
-                <span class="blank-space" data-id="4" onclick="openOptions(4)">...обрати...</span>
-                мм рт. ст.
-            </p>
-
-
-            <p class="mb-4">
-                <strong>3. Прилади:</strong> Основним приладом для вимірювання тиску є барометр. Сучасний безпечний прилад, що не містить рідини, називається барометр-
-                <span class="blank-space" data-id="5" onclick="openOptions(5)">...обрати...</span>.
-            </p>
-
-
-            <p class="mb-4">
-                <strong>4. Зміна тиску:</strong> З підняттям угору атмосферний тиск
-                <span class="blank-space" data-id="6" onclick="openOptions(6)">...обрати...</span>.
-                Біля поверхні Землі при підйомі на кожні
-                <span class="blank-space" data-id="7" onclick="openOptions(7)">...обрати...</span>
-                метрів тиск зменшується приблизно на 1 мм рт. ст.
-            </p>
-        </div>
+        <footer class="bg-slate-800 text-slate-300 p-6 text-center text-sm">
+            <p>Зі святом Великодня! Бажаємо гарних успіхів у навчанні!</p>
+        </footer>
     </div>
-
 
     <!-- Модальне вікно вибору -->
     <div id="options-modal" class="modal-overlay" onclick="closeOptions()">
-        <div class="bg-white p-5 rounded-lg shadow-xl w-72" onclick="event.stopPropagation()">
+        <div class="bg-white p-5 rounded-2xl shadow-2xl w-full max-w-xs scale-100" onclick="event.stopPropagation()">
+            <h4 class="text-xs font-black text-slate-400 uppercase mb-4 tracking-widest text-center italic">Виберіть правильне слово 🥚</h4>
             <div id="options-container"></div>
+            <button onclick="closeOptions()" class="mt-4 w-full text-slate-300 text-xs font-bold uppercase py-2">Скасувати</button>
         </div>
     </div>
 
-
     <script>
+        // Пасхальна анімація (створення елементів)
+        const easterBg = document.getElementById('easter-bg');
+        const items = ['🥚', '🐣', '🌷', '🌿', '🐥', '🌸'];
+
+        function createEasterItem() {
+            const item = document.createElement('div');
+            item.className = 'easter-decoration';
+            item.textContent = items[Math.floor(Math.random() * items.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            item.style.opacity = Math.random() * 0.5 + 0.3;
+            easterBg.appendChild(item);
+
+            setTimeout(() => { item.remove(); }, 7000);
+        }
+
+        setInterval(createEasterItem, 800);
+
         const quizData = {
             1: { correct: "притягання (гравітації)", options: ["нагрівання", "притягання (гравітації)", "охолодження", "руху молекул"] },
             2: { correct: "Паскаля", options: ["Архімеда", "Ньютона", "Паскаля", "Гука"] },
@@ -125,16 +231,14 @@ https://l23and24.github.io/textbook-7_control_questions/paragraph30.html
             7: { correct: "11", options: ["11", "100", "5", "1000"] }
         };
 
-
         let currentId = null;
         let answered = {};
-
 
         function openOptions(id) {
             currentId = id;
             const container = document.getElementById('options-container');
             container.innerHTML = '';
-           
+            
             quizData[id].options.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
@@ -143,39 +247,37 @@ https://l23and24.github.io/textbook-7_control_questions/paragraph30.html
                 container.appendChild(btn);
             });
 
-
             document.getElementById('options-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-
 
         function closeOptions() {
             document.getElementById('options-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
-
 
         function selectOption(value) {
             const isCorrect = value === quizData[currentId].correct;
             const element = document.querySelector(`.blank-space[data-id="${currentId}"]`);
-           
+            
             element.textContent = value;
             element.classList.remove('correct', 'wrong');
             element.classList.add(isCorrect ? 'correct' : 'wrong');
-           
+            
             answered[currentId] = isCorrect;
             updateScore();
             closeOptions();
         }
 
-
         function updateScore() {
             const count = Object.values(answered).filter(v => v === true).length;
             const display = document.getElementById('score-display');
             display.textContent = `Успіх: ${count}/7`;
-            if (count === 7) display.style.backgroundColor = '#10b981';
+            if (count === 7) {
+                display.style.backgroundColor = '#059669';
+                display.textContent = 'Зі святом! 7/7';
+            }
         }
     </script>
 </body>
 </html>
-
-
-Домашнє завдання: Опрацювати матеріал § 31. Дати відповіді на контрольні запитання (с. 220)
