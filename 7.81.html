@@ -1,49 +1,155 @@
-Gemini
-Створення інтерактивного конспекту уроку
-Розмова з Gemini
-створити інтерактивну сторінку конспекту уроку індекс HTML виключно за матеріалами долученими мною конспект має відкриватися на ширину Smart дошки7-81 _ Сполучені посудини
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 7-81: Сполучені посудини</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+        }
+        
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+        }
 
+        .lesson-card {
+            transition: transform 0.3s ease;
+        }
 
+        .btn-action {
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
 
-Перевірка домашнього завдання
+        .btn-action:active {
+            transform: scale(0.95);
+        }
 
-Контрольні запитання (1-6, с. 220)
+        .interactive-section {
+            display: none;
+        }
 
-Вправа № 31 (6) 
+        .interactive-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
 
+    <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+        <!-- Header -->
+        <header class="bg-blue-600 p-6 text-white text-center">
+            <p class="text-blue-100 font-medium mb-1">Фізика • 7 Клас</p>
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight">7-81 | Сполучені посудини</h1>
+        </header>
 
-Пояснення нового навчального матеріалу
+        <!-- Navigation Tabs -->
+        <nav class="flex flex-wrap justify-center gap-2 p-4 bg-gray-50 border-b">
+            <button onclick="showSection('homework')" id="btn-homework" class="tab-btn px-6 py-3 rounded-full font-bold bg-blue-600 text-white">Перевірка Д/З</button>
+            <button onclick="showSection('new-material')" id="btn-new-material" class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 text-gray-700 hover:bg-gray-300">Новий матеріал</button>
+            <button onclick="showSection('summary')" id="btn-summary" class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 text-gray-700 hover:bg-gray-300">Підсумки</button>
+        </nav>
 
-кнопка _ https://docs.google.com/presentation/d/1U8A6ESdSEnf95VMVNRi7OQ-uF_ABx4m-gjyhlsl52Cs/edit?usp=sharing
+        <main class="p-6 md:p-12">
+            
+            <!-- Section 1: Homework -->
+            <section id="homework" class="interactive-section active">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="lesson-card bg-blue-50 p-6 rounded-2xl border-l-8 border-blue-500">
+                        <h2 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                            <span class="mr-2">📝</span> Контрольні запитання
+                        </h2>
+                        <ul class="space-y-3 text-lg text-gray-700">
+                            <li class="flex items-start">
+                                <span class="font-bold mr-2 text-blue-600">1-6.</span> 
+                                Сторінка 220 підручника.
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="lesson-card bg-green-50 p-6 rounded-2xl border-l-8 border-green-500">
+                        <h2 class="text-2xl font-bold text-green-800 mb-4 flex items-center">
+                            <span class="mr-2">🔢</span> Практична частина
+                        </h2>
+                        <div class="text-lg text-gray-700">
+                            <p class="font-bold">Вправа № 31 (6)</p>
+                            <p class="mt-2 text-sm italic text-gray-500">Розберіть алгоритм розв'язання задачі біля дошки.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <!-- Section 2: New Material -->
+            <section id="new-material" class="interactive-section text-center">
+                <div class="max-w-2xl mx-auto py-10">
+                    <div class="mb-8 text-6xl">📽️</div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Пояснення нового матеріалу</h2>
+                    <p class="text-xl text-gray-600 mb-10">Перегляньте презентацію до уроку для візуалізації принципів роботи сполучених посудин.</p>
+                    
+                    <a href="https://docs.google.com/presentation/d/1U8A6ESdSEnf95VMVNRi7OQ-uF_ABx4m-gjyhlsl52Cs/edit?usp=sharing" 
+                       target="_blank" 
+                       class="btn-action inline-flex items-center px-10 py-5 bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold rounded-2xl">
+                        <span>Відкрити презентацію</span>
+                        <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </section>
 
-Підсумки уроку
+            <!-- Section 3: Summary -->
+            <section id="summary" class="interactive-section text-center">
+                <div class="max-w-2xl mx-auto py-10">
+                    <div class="mb-8 text-6xl">🏁</div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Підсумки уроку</h2>
+                    <p class="text-xl text-gray-600 mb-10">Перейдіть до інтерактивного підсумку для закріплення отриманих знань.</p>
+                    
+                    <a href="https://gemini.google.com/share/a6baee94fa81" 
+                       target="_blank" 
+                       class="btn-action inline-flex items-center px-10 py-5 bg-indigo-600 hover:bg-indigo-700 text-white text-2xl font-bold rounded-2xl">
+                        <span>Перейти до підсумків</span>
+                        <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </a>
+                </div>
+            </section>
 
-кнопка_ https://gemini.google.com/share/a6baee94fa81
+        </main>
 
-Я створив для вас інтерактивний конспект уроку на тему "Сполучені посудини". Дизайн оптимізовано для використання на інтерактивних смарт-дошках: великі кнопки, чіткий текст, адаптивна верстка та зручна навігація між етапами уроку.
-Конспект уроку: Сполучені посудини
-16 квіт., 15:22
+        <!-- Footer / Smart Board Tip -->
+        <footer class="p-4 bg-gray-100 text-center text-gray-500 text-sm italic">
+            Для навігації використовуйте кнопки зверху. Сторінка адаптована для сенсорного керування на Smart дошках.
+        </footer>
+    </div>
 
-Цей файл містить:
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.interactive-section').forEach(section => {
+                section.classList.remove('active');
+            });
 
-Три розділи: Перевірка домашнього завдання, Пояснення нового матеріалу та Підсумки.
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
 
-Адаптивність: Контент автоматично підлаштовується під ширину екрана вашої Smart-дошки.
+            // Update tab styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
 
-Інтерактивність: Зручне перемикання між етапами уроку за допомогою вкладок у верхній частині сторінки.
-
-Кнопки-посилання: Яскраві та великі кнопки для переходу до презентації та підсумків уроку.
-
-
-
-
-
-Gemini – це штучний інтелект, і він може помилятися.
-
-Конспект уроку: Сполучені посудини
-
-
-
+            const activeBtn = document.getElementById('btn-' + sectionId);
+            activeBtn.classList.remove('bg-gray-200', 'text-gray-700');
+            activeBtn.classList.add('bg-blue-600', 'text-white');
+        }
+    </script>
+</body>
+</html>
