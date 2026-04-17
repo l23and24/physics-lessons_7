@@ -9,21 +9,25 @@
         body {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Контейнер для сітки */
+        /* Контейнер для сітки - розширено для великих екранів */
         .grid-container {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 24px;
-            padding: 32px;
+            padding: 40px;
             border: 1px solid rgba(226, 232, 240, 0.8);
-            backdrop-blur: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         .lesson-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 16px;
+            /* Збільшено мінімальний розмір картки до 110px для зручності натискання на дошці */
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 20px;
         }
 
         /* Картки-кнопки */
@@ -33,11 +37,11 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.3rem; /* Збільшено шрифт */
             background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            transition: all 0.25s ease-out;
             text-decoration: none;
             color: #1e293b;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -46,8 +50,8 @@
         .lesson-card:hover {
             background: #4f46e5;
             color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
             border-color: #4f46e5;
         }
 
@@ -55,28 +59,34 @@
         .bg-blob {
             position: fixed;
             z-index: -1;
-            filter: blur(70px);
-            opacity: 0.35;
+            filter: blur(80px);
+            opacity: 0.4;
             border-radius: 50%;
+        }
+        
+        /* Стиль для інпуту для кращого вигляду на великому екрані */
+        input::placeholder {
+            color: #94a3b8;
         }
     </style>
 </head>
 <body class="text-slate-900 antialiased relative">
 
-    <div class="bg-blob w-96 h-96 bg-indigo-200 top-0 -left-20"></div>
-    <div class="bg-blob w-80 h-80 bg-emerald-100 bottom-0 -right-10"></div>
+    <div class="bg-blob w-[500px] h-[500px] bg-indigo-200 -top-20 -left-20"></div>
+    <div class="bg-blob w-[500px] h-[500px] bg-emerald-100 -bottom-20 -right-20"></div>
 
-    <div class="max-w-5xl mx-auto px-4 py-12">
+    <!-- Контейнер розтягнуто до 95% ширини -->
+    <div class="max-w-[95%] mx-auto px-4 py-10">
         
-        <header class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-10">
-            <div class="flex flex-col-reverse md:flex-row gap-8 items-center">
+        <header class="bg-white/90 backdrop-blur-md rounded-3xl shadow-sm border border-slate-200 p-8 md:p-12 mb-10">
+            <div class="flex flex-col-reverse lg:flex-row gap-12 items-center">
                 
                 <div class="flex-1">
-                    <h1 class="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                        📚 Фізика 7 клас (НУШ) — Навчальні матеріали
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 flex items-center gap-4">
+                        <span class="text-5xl">📚</span> Фізика 7 клас (НУШ)
                     </h1>
                     
-                    <div class="space-y-4 text-lg text-slate-600 leading-relaxed border-l-4 border-indigo-500 pl-6 text-justify">
+                    <div class="space-y-6 text-xl text-slate-600 leading-relaxed border-l-8 border-indigo-500 pl-8 text-justify">
                         <p>
                             <strong>Вітаю на головній сторінці курсу фізики для 7 класу за програмою Нової Української Школи (НУШ).</strong>
                         </p>
@@ -85,75 +95,88 @@
                         </p>
                     </div>
                     
-                    <div class="mt-8 flex flex-wrap gap-4">
-                        <div class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold border border-indigo-100">
-                            105 уроків
+                    <div class="mt-10 flex flex-wrap gap-6">
+                        <div class="bg-indigo-100 text-indigo-700 px-6 py-3 rounded-2xl text-lg font-bold border border-indigo-200">
+                            📊 105 уроків
                         </div>
-                        <div class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold border border-emerald-100">
-                            НУШ 2025/26
+                        <div class="bg-emerald-100 text-emerald-700 px-6 py-3 rounded-2xl text-lg font-bold border border-emerald-200">
+                            ✨ НУШ 2025/26
                         </div>
                     </div>
                 </div>
 
-                <div class="w-full md:w-1/3 flex justify-center">
+                <div class="w-full lg:w-1/4 flex justify-center">
                     <img 
                         src="fizyka-7-klas-bariakhtar-2024.jpg" 
-                        alt="Обкладинка" 
-                        class="rounded-xl shadow-lg object-cover w-full max-w-[220px] h-auto border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-300"
+                        alt="Обкладинка підручника" 
+                        onerror="this.src='https://placehold.co/400x550/4f46e5/white?text=Фізика+7+клас'"
+                        class="rounded-2xl shadow-2xl object-cover w-full max-w-[300px] h-auto border-8 border-white transform rotate-3 hover:rotate-0 transition-all duration-500"
                     >
                 </div>
             </div>
         </header>
 
-        <div class="mb-8 max-w-md">
-            <label for="search" class="block text-sm font-semibold text-slate-500 mb-2 ml-1 uppercase">Швидкий пошук номера:</label>
+        <div class="mb-10 max-w-2xl">
+            <label for="search" class="block text-sm font-bold text-slate-500 mb-3 ml-2 uppercase tracking-widest">Швидкий пошук номера уроку:</label>
             <div class="relative">
                 <input 
                     type="text" 
                     id="search" 
-                    placeholder="Наприклад: 7.15" 
-                    class="w-full px-5 py-4 rounded-2xl border-2 border-slate-200 focus:border-indigo-500 outline-none transition-all shadow-sm bg-white/80"
+                    placeholder="Введіть номер, наприклад: 7.15" 
+                    class="w-full px-8 py-5 text-xl rounded-2xl border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all shadow-lg bg-white/95"
                     onkeyup="filterLessons()"
                 >
             </div>
         </div>
 
         <div class="grid-container">
-            <h2 class="text-lg font-bold text-slate-700 mb-6 flex items-center gap-2 uppercase tracking-wide">
-                📌 Навігація по уроках:
+            <h2 class="text-2xl font-black text-slate-800 mb-8 flex items-center gap-3 uppercase tracking-wider">
+                <span class="bg-indigo-500 text-white p-2 rounded-lg">📌</span> Навігація по уроках:
             </h2>
             <div id="grid" class="lesson-grid">
-                </div>
+                <!-- Картки генеруються скриптом -->
+            </div>
         </div>
 
-        <footer class="mt-20 py-8 border-t border-slate-200 text-center text-slate-500 text-sm">
-            <p>Онлайн-кабінет фізики 229</p>
+        <footer class="mt-20 py-12 border-t border-slate-200 text-center">
+            <p class="text-slate-400 text-lg font-medium">© 2025 Онлайн-кабінет фізики 229</p>
         </footer>
     </div>
 
     <script>
         function generateGrid() {
             const grid = document.getElementById('grid');
-            for (let i = 1; i <= 105; i++) {
+            const lessonsCount = 105;
+            
+            // Використовуємо DocumentFragment для швидшого рендерингу
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 1; i <= lessonsCount; i++) {
                 const lessonId = `7.${i}`;
                 const a = document.createElement('a');
                 a.href = `${lessonId}.html`;
                 a.className = 'lesson-card';
                 a.textContent = lessonId;
-                grid.appendChild(a);
+                a.setAttribute('aria-label', `Урок ${lessonId}`);
+                fragment.appendChild(a);
             }
+            
+            grid.appendChild(fragment);
         }
 
         function filterLessons() {
             const input = document.getElementById('search');
-            const filter = input.value.toLowerCase();
+            const filter = input.value.toLowerCase().trim();
             const cards = document.querySelectorAll('.lesson-card');
+            
             cards.forEach(card => {
-                card.style.display = card.textContent.toLowerCase().includes(filter) ? "flex" : "none";
+                const isVisible = card.textContent.toLowerCase().includes(filter);
+                card.style.display = isVisible ? "flex" : "none";
             });
         }
 
-        window.onload = generateGrid;
+        // Ініціалізація після завантаження
+        window.addEventListener('DOMContentLoaded', generateGrid);
     </script>
 </body>
 </html>
